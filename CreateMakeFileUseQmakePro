@@ -1,0 +1,35 @@
+#! /bin/sh
+
+# CreateMakeFileUseQmakePro: Version 1
+# Sreach Current directory, find the Qmake project file and use the project file to create makefile 
+
+projectname=$1".pro"
+
+sreachQmakeProGenerateMakefile()
+{
+	echo "sreachQmakeProGenerateMakefile in $1\n"
+	for file in `ls $1 | grep .[ch]`  
+	do
+		if [ -d $1"/"$file ]  
+		then 
+			echo $1"/"$file
+		else
+			{
+				prefix=${file##*.}
+				if [ "$prefix" = "pro" ]
+				then
+					qmake -o makefile $file
+					return
+				fi
+			}
+		fi  
+	done  
+}
+
+
+qmakefilename="QMAKE.pro"
+if [ -e $qmakefilename ]
+then
+	echo "Use qmake project Generate makeFile!"
+	qmake -o makefile $qmakefilename 
+fi

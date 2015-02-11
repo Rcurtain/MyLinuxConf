@@ -1,0 +1,4 @@
+#! /bin/sh
+
+projectrootfile="PROJECT_ROOT"
+touch $projectrootfile

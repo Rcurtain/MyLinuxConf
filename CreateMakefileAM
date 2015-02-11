@@ -1,0 +1,15 @@
+#! /bin/sh
+
+if [ $# -ne 1 ]
+then
+	echo "Usage: CreateMakefileAM Project_name"
+	exit 10
+fi
+
+filename="Makefile.am"
+
+touch $filename
+
+echo "AUTOMAKE_OPTIONS=foreign">>$filename
+echo "bin_PROGRAMS="$1>>$filename
+echo $1"_SOURCES="$1".c">>$filename

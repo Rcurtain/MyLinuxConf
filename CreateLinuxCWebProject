@@ -1,0 +1,29 @@
+#! /bin/sh
+
+dirtoryname=$1
+
+filename=$1".c"
+
+mkdir $dirtoryname
+cd $dirtoryname
+
+makefilename="makefile"
+touch $makefilename
+
+objectname=${filename%%.*}
+debugobjectname=${objectname}.o
+extraincludefile="../until/read_write.h ../until/sysuntil.h"
+
+{
+	echo "$objectname : $filename"
+	echo "		gcc $filename -o $objectname $extraincludefile"
+	echo "debug :"
+	echo "		gcc -g $filename -o $debugobjectname $extraincludefile"
+	echo "clean :"
+	echo "		rm *.o"
+} > $makefilename
+
+projectrootfile="PROJECT_ROOT"
+touch $projectrootfile
+
+CreateLinuxCFile $filename

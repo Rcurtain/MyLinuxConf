@@ -1,0 +1,11 @@
+#! /bin/sh
+
+# CreateMakeFileUseQmake: Version 1
+# Sreach Current directory, find the Qmake project file and use the project file to create makefile 
+
+qmakefilename="QMAKE"
+
+echo "Create QmakePro in for this project:"
+CreateQmakePro $qmakefilename
+echo "Create makefile Use QmakePro:"
+CreateMakeFileUseQmakePro

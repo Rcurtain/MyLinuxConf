@@ -1,0 +1,70 @@
+#! /bin/sh
+
+# CreateQmakeProDebug: Version 1
+
+projectname=$1".pro"
+appname="DebugOutput"
+
+sel="y"
+if [ -e $projectname ] 
+then
+	echo "File alreay exist, still Create it(y/n):"
+	read sel
+fi
+
+if [ "$sel" = "n" ] 
+then
+	echo "CreateFile Failed!"
+	exit 10
+fi
+touch $projectname
+
+{
+	echo "# Qmake project file"
+	echo "# Usage: qmake -o makefile $projectname"
+	echo ""
+	echo "TEMPLATE = app"
+	echo "DESTDIR  = ./"
+	echo "# TARGET = "
+	echo "# DEFINES +=  "
+	echo "# INCLUDEPATH += "
+	echo "# DEPENDPATH += "
+	echo "# LIBS += "
+	echo "CONFIG += debug"
+	echo ""
+} > $projectname
+
+ListAllFile()
+{
+	sep="/"
+	echo "ListAllFile in $1\n"
+	for file in `ls $1 | grep .[ch]`  
+	do
+		if [ -d $1"/"$file ]  
+		then 
+			ListAllFile $1"/"$file  
+		else
+			{
+				prefix=${file##*.}
+				if [ "$prefix" = "hpp" ]
+				then
+					echo "HEADERS +=" $1$sep$file >> $projectname
+				fi
+				if [ "$prefix" = "h" ]
+				then
+					echo "HEADERS +=" $1$sep$file >> $projectname
+				fi
+				if [ "$prefix" = "cpp" ]
+				then
+					echo "SOURCES +=" $1$sep$file >> $projectname
+				fi
+				if [ "$prefix" = "c" ]
+				then
+					echo "SOURCES +=" $1$sep$file >> $projectname
+				fi
+			}
+		fi  
+	done  
+}
+
+ListAllFile .

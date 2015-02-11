@@ -1,0 +1,25 @@
+#! /bin/sh
+
+if [ $# -ne 1 ]
+then
+	echo Usage: CreateHtmplFile fileName
+	exit 10
+fi
+
+touch $1
+
+{
+	echo "<html>"
+	
+	echo "    <head>"
+	echo "        <title>Welcome</title>"
+	echo "    </head>"
+
+	echo "    <body>"
+	echo "        <h1> </h1>"
+	echo "    </body>"
+
+	echo "</html>"
+} > $1
+
+vim $1

@@ -1,0 +1,19 @@
+#! /bin/sh
+
+if [ $# -ne 1 ]
+then
+	echo Usage: CreateShellScript fileName
+	exit 10
+fi
+
+touch $1
+
+{
+	echo "#! /bin/sh"
+	echo ""
+	echo "# $1: Version 1"
+} > $1
+
+chmod +x $1
+
+vim $1
