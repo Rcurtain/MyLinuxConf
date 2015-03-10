@@ -30,8 +30,9 @@ touch $1
 	echo "    def GET(self):"
 	echo "        return 'hello'"
 	echo ""
+	echo "app = web.application(urls, globals())"
+	echo ""
 	echo "if __name__ == '__main__':"
-	echo "    app = web.application(urls, globals())"
 	echo "    app.run()"
 } > $1
 

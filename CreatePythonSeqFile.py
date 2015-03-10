@@ -3,6 +3,7 @@
 # CreatePythonSeqFile.py: Version 1
 
 import sys
+import os
 from CreateSequenceFile import CreateSequenceFile
 
 def Usage():
@@ -19,6 +20,7 @@ def AddPythonTag(FilePrefix, StartFileNum, FileNum, FileEndfix):
 		filehandle.write(": Version 1\n")
 		filehandle.write("")
 		filehandle.close()
+		os.system("chmod +x " + realfilename)
 
 def main():
 	if len(sys.argv) != 4 :

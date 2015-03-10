@@ -5,20 +5,26 @@
 import sys
 
 def Usage():
-	print "CreateSequenceFile FilePrefix StartFileNum FileNum"
+	print "CreateSequenceFile FilePrefix StartFileNum FileNum FileEndfix"
 	exit(1)
 
-def Run():
-	if len(sys.argv) != 4 :
-		Usage()
-	filename = sys.argv[1];
-	startfilenum = int(sys.argv[2])
-	filenum = int(sys.argv[3])
-
-	for i in range(startfilenum, startfilenum + filenum):
-		realfilename = filename + str(i)
+def CreateSequenceFile(FilePrefix, StartFileNum, FileNum, FileEndfix):
+	for i in range(StartFileNum, StartFileNum + FileNum):
+		realfilename = FilePrefix + str(i) + "." + FileEndfix
 		filehandle = open(realfilename, "w+")
 		filehandle.close()
-	
+
+def main():
+	if len(sys.argv) != 4 :
+		Usage()
+
+	filename = sys.argv[1]
+	startfilenum = int(sys.argv[2])
+	filenum = int(sys.argv[3])
+	if len(sys.argv) == 5 :
+		fileendfix = sys.argv[4]
+
+	CreateSequenceFile(filename, startfilenum, filenum, fileendfix)
+
 if __name__ == "__main__":
-	Run()
+	main()
