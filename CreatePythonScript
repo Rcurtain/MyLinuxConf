@@ -23,6 +23,7 @@ touch $1
 
 {
 	echo "#! /usr/bin/python"
+	echo "# coding: utf-8"
 	echo ""
 	echo "# $1: Version 1"
 	echo ""
