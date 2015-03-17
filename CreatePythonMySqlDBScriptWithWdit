@@ -1,0 +1,38 @@
+#! /bin/sh
+
+if [ $# -ne 1 ]
+then
+	echo Usage: CreatePythonScript fileName
+	exit 10
+fi
+
+sel="y"
+if [ -e $1 ] 
+then
+	echo "File alreay exist, still Create it(y/n):"
+	read sel
+fi
+
+if [ "$sel" = "n" ] 
+then
+	echo "CreateFile Failed!"
+	exit 10
+fi
+
+touch $1
+
+{
+	echo "#! /usr/bin/python"
+	echo ""
+	echo "# $1: Version 1"
+	echo ""
+	echo "import MySQLdb"
+	echo ""
+	echo "db = MySQLdb.connect()"
+	echo ""
+	echo "db.close()"
+} > $1
+
+chmod +x $1
+
+vim $1
