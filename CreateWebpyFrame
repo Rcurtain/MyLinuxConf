@@ -1,0 +1,19 @@
+#! /bin/sh
+
+dirtoryname=$1
+mkdir $dirtoryname
+
+cd $dirtoryname
+
+tempdir="templates"
+mkdir $tempdir
+
+CreatePythonScript db.py
+CreatePythonScript code.py
+CreatePythonScript config.py
+CreatePythonScript view.py
+
+sql="sql"
+mkdir $sql
+cd $sql
+touch schema.sql
