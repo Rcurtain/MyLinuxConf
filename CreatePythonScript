@@ -27,11 +27,6 @@ touch $1
 	echo ""
 	echo "# $1: Version 1"
 	echo ""
-	echo "def main():"
-	echo "    "
-	echo ""
-	echo "if __name__ == '__main__':"
-	echo "    main()"
 } > $1
 
 chmod +x $1
