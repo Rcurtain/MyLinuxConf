@@ -8,10 +8,10 @@ cd $dirtoryname
 tempdir="templates"
 mkdir $tempdir
 
-CreatePythonScript db.py
-CreatePythonScript code.py
-CreatePythonScript config.py
-CreatePythonScript view.py
+src_name=$1.py
+
+CreatePythonScript $src_name 
+CreatePythonScript model.py 
 
 sql="sql"
 mkdir $sql

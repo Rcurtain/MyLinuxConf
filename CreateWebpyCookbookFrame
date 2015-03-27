@@ -1,0 +1,10 @@
+#! /bin/sh
+
+dirtoryname=$1
+mkdir $dirtoryname
+
+cd $dirtoryname
+
+src_name=$1.py
+
+CreateWebpyCookbookApp $src_name 
